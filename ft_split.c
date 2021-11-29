@@ -6,7 +6,7 @@
 /*   By: dchonvil <dchonvil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 19:26:06 by dchonvil          #+#    #+#             */
-/*   Updated: 2021/11/29 05:55:13 by dchonvil         ###   ########.fr       */
+/*   Updated: 2021/11/29 19:52:13 by dchonvil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ char	**ft_split(char const *s, char c)
 	int		i;
 	char	**box;
 
+	if (!s || s[0] == '\0')
+		return (NULL);
 	box = malloc(sizeof(char *) * (count_char(s, c) + 1));
-	if (!box || !s)
+	if (box == NULL)
 		return (NULL);
 	i = 0;
 	while (*s)
@@ -75,7 +77,7 @@ char	**ft_split(char const *s, char c)
 		if (*s && !check_letter(*s, c))
 		{
 			box[i] = tab_alloc(s, c);
-			if (box[i] == NULL)
+			if (!box[i])
 				return (NULL);
 			i++;
 			while (*s && !check_letter(*s, c))

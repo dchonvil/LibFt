@@ -34,8 +34,9 @@ SRC =   ft_atoi.c \
         ft_strlcat.c \
         ft_strmapi.c \
         ft_strrchr.c \
-        ft_tolower.c \
-        ft_lstadd_back.c \
+        ft_tolower.c
+
+SRC2 =	ft_lstadd_back.c \
         ft_lstadd_front.c \
         ft_lstclear.c \
         ft_lstdelone.c \
@@ -44,7 +45,7 @@ SRC =   ft_atoi.c \
         ft_lstmap.c \
         ft_lstnew.c \
         ft_lstsize.c \
-        ft_swap.c \
+		ft_swap.c \
         ft_rev_int_tab.c \
         ft_strupcase.c \
         ft_strlowcase.c \
@@ -55,13 +56,10 @@ SRC =   ft_atoi.c \
         ft_sqrt.c \
         ft_find_next_prime.c \
         ft_foreach.c \
-        ft_sort_strtab.c \
-        get_next_line.c \
-		get_next_line_utils.c \
-		ft_printf.c \
-		ft_printf_tools.c \
-		ft_printf_interpreter.c
+        ft_sort_strtab.c
+
 OBJ = $(SRC:%.c=%.o)
+OBJ2 = $(SRC2:%.c=%.o)
 OBJ_DIR = mkdir obj && mv *.o obj
 CFLAGS = -Wall -Werror -Wextra -I./inc/
 
@@ -77,5 +75,10 @@ clean:
 
 fclean:	clean
 	$(RM) $(NAME)
+
+bonus: fclean $(OBJ) $(OBJ2)
+	ar rcs $(NAME) $(OBJ) $(OBJ2)
+	ranlib $(NAME)
+	$(OBJ_DIR)
 
 re: fclean all
